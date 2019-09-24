@@ -176,4 +176,25 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style TargetType="TextBox" x:Key="TextBoxWithPlaceholder">
+        <Style.Resources>
+            <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Top" Stretch="None">
+                <VisualBrush.Visual>
+                    <Label Content="Write a comment" Foreground="LightGray" />
+                </VisualBrush.Visual>
+            </VisualBrush>
+        </Style.Resources>
+        <Style.Triggers>
+            <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+            </Trigger>
+            <Trigger Property="Text" Value="{x:Null}">
+                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+            </Trigger>
+            <Trigger Property="IsKeyboardFocused" Value="True">
+                <Setter Property="Background" Value="White" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 </ResourceDictionary>
