@@ -6,18 +6,20 @@
         xmlns:uc="clr-namespace:WPFSpinnerControl.UserSelection"
         xmlns:chip="clr-namespace:WPFSpinnerControl.Chip"
         mc:Ignorable="d"
-        Title="MainWindow" Height="399.174" Width="384.298">
+        Title="MainWindow" Height="514.537" Width="384.298">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles.xaml"/>
                 <ResourceDictionary Source="Theme.xaml"/>
                 <ResourceDictionary Source="Chip.xaml"/>
+                <ResourceDictionary Source="Menu.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
@@ -45,5 +47,14 @@
         <ComboBox  Grid.Row="2"></ComboBox>
         <uc:UserSelectionView Grid.Row="3"></uc:UserSelectionView>
         <chip:ChipView Grid.Row="4"></chip:ChipView>
+        <Menu DockPanel.Dock="Top" Grid.Row="5" Style="{StaticResource MenuStyle}">
+            <MenuItem Header="_File" >
+                <MenuItem Header="_New" />
+                <MenuItem Header="_Open" />
+                <MenuItem Header="_Save" />
+                <Separator />
+                <MenuItem Header="_Exit" />
+            </MenuItem>
+        </Menu>
     </Grid>
 </Window>

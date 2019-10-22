@@ -168,7 +168,7 @@
         <Style.Triggers>
         </Style.Triggers>
     </Style>
-
+    
     <Style TargetType="{x:Type ComboBoxItem}">
         <Setter Property="SnapsToDevicePixels" Value="true" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />

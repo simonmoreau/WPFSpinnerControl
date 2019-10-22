@@ -32,8 +32,6 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-
-        
     </Style>
     
     <DataTemplate x:Key="ChipDataTemplate">
