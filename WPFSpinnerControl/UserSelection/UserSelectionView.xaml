@@ -15,19 +15,9 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-        <ComboBox Style="{StaticResource UserComboBox}">
-            <ComboBoxItem IsSelected="True">
-                <StackPanel Orientation="Horizontal">
-                    <Image Source="test.jpg"></Image>
-                    <TextBox>Simon Moreau</TextBox>
-                </StackPanel>
-            </ComboBoxItem>
-            <ComboBoxItem>
-                <StackPanel Orientation="Horizontal">
-                    <Image Source="test.jpg"></Image>
-                    <TextBox>Toto</TextBox>
-                </StackPanel>
-            </ComboBoxItem>
-        </ComboBox>
+        <StackPanel Orientation="Horizontal">
+            <Image Source="test.jpg"></Image>
+            <TextBox>Simon Moreau</TextBox>
+        </StackPanel>
     </Grid>
 </UserControl>

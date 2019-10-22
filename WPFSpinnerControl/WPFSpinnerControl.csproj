@@ -54,10 +54,24 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BindableBase.cs" />
+    <Compile Include="Chip\ChipView.xaml.cs">
+      <DependentUpon>ChipView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Chip\ChipViewModel.cs" />
+    <Compile Include="RelayCommand.cs" />
     <Compile Include="UserSelection\UserSelectionView.xaml.cs">
       <DependentUpon>UserSelectionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserSelection\UserSelectionViewModel.cs" />
+    <Page Include="Chip.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Chip\ChipView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

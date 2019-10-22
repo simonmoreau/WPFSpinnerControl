@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:uc="clr-namespace:WPFSpinnerControl.UserSelection"
+        xmlns:chip="clr-namespace:WPFSpinnerControl.Chip"
         mc:Ignorable="d"
         Title="MainWindow" Height="399.174" Width="384.298">
     <Window.Resources>
@@ -11,11 +12,13 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles.xaml"/>
                 <ResourceDictionary Source="Theme.xaml"/>
+                <ResourceDictionary Source="Chip.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
@@ -41,5 +44,6 @@
         </Grid>
         <ComboBox  Grid.Row="2"></ComboBox>
         <uc:UserSelectionView Grid.Row="3"></uc:UserSelectionView>
+        <chip:ChipView Grid.Row="4"></chip:ChipView>
     </Grid>
 </Window>
