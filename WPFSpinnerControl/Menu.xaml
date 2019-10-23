@@ -12,15 +12,19 @@
     <SolidColorBrush x:Key="Item.Background" Color="#fff"/>
     <SolidColorBrush x:Key="Item.Border" Color="#ccc"/>
     <SolidColorBrush x:Key="Item.Text" Color="#262626"/>
-    
+
     <BooleanToVisibilityConverter x:Key="btv" />
 
     <!-- style a top level menu item -->
     <ControlTemplate x:Key="VsMenuTop" TargetType="MenuItem">
         <Border x:Name="DropDownButton" BorderThickness="1" BorderBrush="{StaticResource Item.Border}" Background="{StaticResource Item.Background}" CornerRadius="3">
-            <StackPanel >
-                <!-- label, icons, etc. -->
-                <Label Content="{TemplateBinding Header}" Margin="5" Foreground="{StaticResource Item.Text}" />
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <!-- label, icons, etc. -->
+                    <ContentPresenter x:Name="Icon" Content="{TemplateBinding Icon}" ContentSource="Icon" HorizontalAlignment="Center" Height="16"  Width="16" Margin="3" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center"/>
+                    <!--<Image Source="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}}" Width="16" Margin="0" />-->
+                    <Label Content="{TemplateBinding Header}" Margin="5" Foreground="{StaticResource Item.Text}" />
+                </StackPanel>
 
                 <!-- sub items -->
                 <Popup IsOpen="{TemplateBinding IsSubmenuOpen}" AllowsTransparency="True" Focusable="False">
@@ -45,11 +49,44 @@
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
+    <!-- style a top level menu item without text -->
+    <ControlTemplate x:Key="VsMenuTopIcon" TargetType="MenuItem">
+        <Border x:Name="DropDownButton" BorderThickness="1" BorderBrush="{StaticResource Item.Border}" Background="{StaticResource Item.Background}" CornerRadius="3">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <ContentPresenter Grid.Row="0" x:Name="Icon" Content="{TemplateBinding Icon}" ContentSource="Icon" Height="24"  Width="24"  Margin="3" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                <!-- sub items -->
+                <Popup Grid.Row="1" IsOpen="{TemplateBinding IsSubmenuOpen}" AllowsTransparency="True" Focusable="False">
+                    <Border x:Name="DropDownBorder" BorderThickness="1" Background="{StaticResource Item.Background}" BorderBrush="{StaticResource Item.Border}" CornerRadius="3">
+                        <StackPanel IsItemsHost="True" />
+                    </Border>
+                </Popup>
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" TargetName="DropDownButton" Value="{StaticResource Item.MouseOver.Background}"/>
+                <Setter Property="BorderBrush" TargetName="DropDownButton"  Value="{StaticResource Item.MouseOver.Border}"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" TargetName="DropDownButton"  Value="{StaticResource Item.SelectedActive.Background}"/>
+                <Setter Property="BorderBrush" TargetName="DropDownButton"  Value="{StaticResource Item.SelectedActive.Border}"/>
+            </Trigger>
+            <Trigger Property="IsGrouping" Value="true">
+                <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
     <!-- style a non-top level menu item -->
     <ControlTemplate x:Key="VsMenuSub" TargetType="MenuItem">
         <DockPanel x:Name="panel" Height="30">
             <!-- label, icons, etc. -->
-            <Image Source="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}}" Width="16" Margin="0" />
+            <ContentPresenter x:Name="Icon" Content="{TemplateBinding Icon}" ContentSource="Icon" HorizontalAlignment="Center" Height="16" Margin="0" Width="16" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center"/>
+            <!--<Image Source="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}}" Width="16" Margin="0" />-->
             <Label Content="{TemplateBinding Header}" Foreground="{StaticResource Item.Text}" Margin="0,0,5,0" Height="30" />
 
             <!-- draw the right arrow only if this menu item has sub items -->
@@ -83,10 +120,32 @@
         <Border Height="1" Background="#E0E0E0" />
     </ControlTemplate>
 
+    <!-- the sort icon -->
+    <ControlTemplate x:Key="SortIcon">
+        <Canvas>
+            <Path Fill="{TemplateBinding Foreground}" Stroke="{TemplateBinding Foreground}" Data="m 5.7995118 11.4709 1.48514 0 c 0.38848 0 0.58 0.4724 0.30121 0.743 l -2.41681 2.3452 c -0.16779 0.1628 -0.43461 0.1628 -0.60241 0 l -2.4168 -2.3452 c -0.27879 -0.2706 -0.0873 -0.743 0.3012 -0.743 l 1.48515 0 0 -9.453 1.86332 0 z"/>
+            <Path Fill="{TemplateBinding Foreground}" Stroke="{TemplateBinding Foreground}" Data="m 14.768406 7.3687 -1.179199 0 -0.46875 -1.2195 -2.1459959 0 -0.4431153 1.2195 -1.1499023 0 2.0910645 -5.3687 1.14624 0 2.149658 5.3687 z m -1.995849 -2.124 -0.739746 -1.9922 -0.725098 1.9922 1.464844 0 z"/>
+            <Path Fill="{TemplateBinding Foreground}" Stroke="{TemplateBinding Foreground}" Data="m 9.8941388 14.6989 0 -0.9778 2.8198242 -3.4827 -2.5012207 0 0 -0.9082 3.9294437 0 0 0.8423 -2.9406741 3.6218 3.0541991 0 0 0.9046 -4.3615722 0 z"/>
+        </Canvas>
+    </ControlTemplate>
+
+    <!-- the more icon -->
+    <ControlTemplate x:Key="MoreIcon">
+        <Canvas>
+            <Path
+                            Fill="{TemplateBinding Foreground}"
+                            Stroke="{TemplateBinding Foreground}"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Data="M 2 4 C 3.1 4 4 3.1 4 2 4 0.9 3.1 0 2 0 0.9 0 0 0.9 0 2 0 3.1 0.9 4 2 4 Z M 2 6 C 0.9 6 0 6.9 0 8 0 9.1 0.9 10 2 10 3.1 10 4 9.1 4 8 4 6.9 3.1 6 2 6 Z m 0 6 c -1.1 0 -2 0.9 -2 2 0 1.1 0.9 2 2 2 1.1 0 2 -0.9 2 -2 0 -1.1 -0.9 -2 -2 -2 z"/>
+        </Canvas>
+    </ControlTemplate>
+
+
     <!-- some base stuff -->
     <Style TargetType="Menu">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Height" Value="35px" />
     </Style>
-    
+
 </ResourceDictionary>

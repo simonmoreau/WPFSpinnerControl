@@ -25,6 +25,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <ProgressBar Width="50" Height="50"/>
         <Grid Grid.Row="1" Margin="10,5,10,5">
@@ -53,12 +54,33 @@
         <chip:ChipView Grid.Row="4"></chip:ChipView>
         <Menu DockPanel.Dock="Top" Grid.Row="5" IsMainMenu="True">
             <MenuItem Header="_Code" Template="{StaticResource VsMenuTop}">
-                <MenuItem Header="_Files" Template="{StaticResource VsMenuSub}" />
+                <MenuItem.Icon>
+                    <ContentControl Template="{StaticResource SortIcon}" />
+                </MenuItem.Icon>
+                <MenuItem Header="_Files" Template="{StaticResource VsMenuSub}">
+                    <MenuItem.Icon>
+                        <ContentControl Template="{StaticResource SortIcon}" />
+                    </MenuItem.Icon>
+                </MenuItem>
                 <MenuItem Header="_Commits" Template="{StaticResource VsMenuSub}" />
                 <Separator Template="{StaticResource VsMenuSep}" />
                 <MenuItem Header="_Pushes" Template="{StaticResource VsMenuSub}" />
             </MenuItem>
         </Menu>
-
+        <Menu DockPanel.Dock="Top" Grid.Row="6" IsMainMenu="True">
+            <MenuItem Template="{StaticResource VsMenuTopIcon}">
+                <MenuItem.Icon>
+                    <ContentControl Template="{StaticResource MoreIcon}" />
+                </MenuItem.Icon>
+                <MenuItem Header="_Files" Template="{StaticResource VsMenuSub}">
+                    <MenuItem.Icon>
+                        <ContentControl Template="{StaticResource SortIcon}" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Commits" Template="{StaticResource VsMenuSub}" />
+                <Separator Template="{StaticResource VsMenuSep}" />
+                <MenuItem Header="_Pushes" Template="{StaticResource VsMenuSub}" />
+            </MenuItem>
+        </Menu>
     </Grid>
 </Window>
