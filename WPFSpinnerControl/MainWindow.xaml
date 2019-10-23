@@ -44,17 +44,21 @@
                 <Button >Submit</Button>
             </StackPanel>
         </Grid>
-        <ComboBox  Grid.Row="2"></ComboBox>
+        <ComboBox  Grid.Row="2">
+            <ComboBoxItem>Bonjour</ComboBoxItem>
+            <ComboBoxItem>Bonjour2</ComboBoxItem>
+            <ComboBoxItem>Hello</ComboBoxItem>
+        </ComboBox>
         <uc:UserSelectionView Grid.Row="3"></uc:UserSelectionView>
         <chip:ChipView Grid.Row="4"></chip:ChipView>
-        <Menu DockPanel.Dock="Top" Grid.Row="5" Style="{StaticResource MenuStyle}">
-            <MenuItem Header="_File" >
-                <MenuItem Header="_New" />
-                <MenuItem Header="_Open" />
-                <MenuItem Header="_Save" />
-                <Separator />
-                <MenuItem Header="_Exit" />
+        <Menu DockPanel.Dock="Top" Grid.Row="5" IsMainMenu="True">
+            <MenuItem Header="_Code" Template="{StaticResource VsMenuTop}">
+                <MenuItem Header="_Files" Template="{StaticResource VsMenuSub}" />
+                <MenuItem Header="_Commits" Template="{StaticResource VsMenuSub}" />
+                <Separator Template="{StaticResource VsMenuSep}" />
+                <MenuItem Header="_Pushes" Template="{StaticResource VsMenuSub}" />
             </MenuItem>
         </Menu>
+
     </Grid>
 </Window>
