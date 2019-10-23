@@ -16,9 +16,9 @@
     <!-- the sort icon -->
     <ControlTemplate x:Key="SortIcon">
         <Canvas Width="16" Height="16">
-            <Path Fill="{TemplateBinding Foreground}" Stroke="{TemplateBinding Foreground}" Data="m 5.7995118 11.4709 1.48514 0 c 0.38848 0 0.58 0.4724 0.30121 0.743 l -2.41681 2.3452 c -0.16779 0.1628 -0.43461 0.1628 -0.60241 0 l -2.4168 -2.3452 c -0.27879 -0.2706 -0.0873 -0.743 0.3012 -0.743 l 1.48515 0 0 -9.453 1.86332 0 z"/>
-            <Path Fill="{TemplateBinding Foreground}" Stroke="{TemplateBinding Foreground}" Data="m 14.768406 7.3687 -1.179199 0 -0.46875 -1.2195 -2.1459959 0 -0.4431153 1.2195 -1.1499023 0 2.0910645 -5.3687 1.14624 0 2.149658 5.3687 z m -1.995849 -2.124 -0.739746 -1.9922 -0.725098 1.9922 1.464844 0 z"/>
-            <Path Fill="{TemplateBinding Foreground}" Stroke="{TemplateBinding Foreground}" Data="m 9.8941388 14.6989 0 -0.9778 2.8198242 -3.4827 -2.5012207 0 0 -0.9082 3.9294437 0 0 0.8423 -2.9406741 3.6218 3.0541991 0 0 0.9046 -4.3615722 0 z"/>
+            <Path Fill="{TemplateBinding Foreground}" Data="m 5.7995118 11.4709 1.48514 0 c 0.38848 0 0.58 0.4724 0.30121 0.743 l -2.41681 2.3452 c -0.16779 0.1628 -0.43461 0.1628 -0.60241 0 l -2.4168 -2.3452 c -0.27879 -0.2706 -0.0873 -0.743 0.3012 -0.743 l 1.48515 0 0 -9.453 1.86332 0 z"/>
+            <Path Fill="{TemplateBinding Foreground}" Data="m 14.768406 7.3687 -1.179199 0 -0.46875 -1.2195 -2.1459959 0 -0.4431153 1.2195 -1.1499023 0 2.0910645 -5.3687 1.14624 0 2.149658 5.3687 z m -1.995849 -2.124 -0.739746 -1.9922 -0.725098 1.9922 1.464844 0 z"/>
+            <Path Fill="{TemplateBinding Foreground}" Data="m 9.8941388 14.6989 0 -0.9778 2.8198242 -3.4827 -2.5012207 0 0 -0.9082 3.9294437 0 0 0.8423 -2.9406741 3.6218 3.0541991 0 0 0.9046 -4.3615722 0 z"/>
         </Canvas>
     </ControlTemplate>
 
@@ -30,25 +30,27 @@
     <!-- the more icon -->
     <ControlTemplate x:Key="MoreIcon" >
         <Canvas  Width="16" Height="16">
-            <Path Fill="{TemplateBinding Foreground}" Stroke="{TemplateBinding Foreground}" Data="M 2 4 C 3.1 4 4 3.1 4 2 4 0.9 3.1 0 2 0 0.9 0 0 0.9 0 2 0 3.1 0.9 4 2 4 Z M 2 6 C 0.9 6 0 6.9 0 8 0 9.1 0.9 10 2 10 3.1 10 4 9.1 4 8 4 6.9 3.1 6 2 6 Z m 0 6 c -1.1 0 -2 0.9 -2 2 0 1.1 0.9 2 2 2 1.1 0 2 -0.9 2 -2 0 -1.1 -0.9 -2 -2 -2 z"/>
+            <Path Fill="{TemplateBinding Foreground}" Data="m 8 4.3396225 c 1.006604 0 1.830189 -0.8235849 1.830189 -1.8301886 C 9.830189 1.5028301 9.006604 0.67924517 8 0.67924517 c -1.006604 0 -1.830189 0.82358493 -1.830189 1.83018873 0 1.0066037 0.823585 1.8301886 1.830189 1.8301886 z m 0 1.8301887 c -1.006604 0 -1.830189 0.8235849 -1.830189 1.8301887 0 1.0066038 0.823585 1.8301887 1.830189 1.8301887 1.006604 0 1.830189 -0.8235849 1.830189 -1.8301887 C 9.830189 6.9933961 9.006604 6.1698112 8 6.1698112 Z m 0 5.4905658 c -1.006604 0 -1.830189 0.823585 -1.830189 1.830189 0 1.006604 0.823585 1.830189 1.830189 1.830189 1.006604 0 1.830189 -0.823585 1.830189 -1.830189 0 -1.006604 -0.823585 -1.830189 -1.830189 -1.830189 z"/>
         </Canvas>
     </ControlTemplate>
 
     <BooleanToVisibilityConverter x:Key="btv" />
+    <local:StringNullOrEmptyToVisibilityConverter x:Key="stv"/>
+    <local:NullOrEmptyToVisibilityConverter x:Key="ntv"/>
 
     <!-- style a top level menu item -->
     <ControlTemplate x:Key="VsMenuTop" TargetType="MenuItem">
         <Border x:Name="DropDownButton" BorderThickness="1" BorderBrush="{StaticResource Item.Border}" Background="{StaticResource Item.Background}" CornerRadius="3">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="{TemplateBinding Height}"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="0,3">
                     <!-- label, icons, etc. -->
-                    <ContentPresenter x:Name="Icon" Content="{TemplateBinding Icon}" ContentSource="Icon" Margin="3,0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                    <ContentPresenter MinWidth="{TemplateBinding MinWidth}" x:Name="Icon" Content="{TemplateBinding Icon}" ContentSource="Icon" Margin="3,0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Visibility="{TemplateBinding Icon, Converter={StaticResource ntv}}"/>
                     <!--<Image Source="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}}" Width="16" Margin="0" />-->
-                    <Label Content="{TemplateBinding Header}" Foreground="{StaticResource Item.Text}" Margin="3,0" />
+                    <Label Content="{TemplateBinding Header}" Foreground="{StaticResource Item.Text}" Margin="3,0" Visibility="{TemplateBinding Header, Converter={StaticResource stv}}" />
                 </StackPanel>
                 <!-- sub items -->
                 <Popup Grid.Row="1" IsOpen="{TemplateBinding IsSubmenuOpen}" AllowsTransparency="True" Focusable="False">

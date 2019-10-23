@@ -53,7 +53,7 @@
         <uc:UserSelectionView Grid.Row="3"></uc:UserSelectionView>
         <chip:ChipView Grid.Row="4"></chip:ChipView>
         <Menu DockPanel.Dock="Top" Grid.Row="5" IsMainMenu="True">
-            <MenuItem Header="_Code" Template="{StaticResource VsMenuTop}">
+            <MenuItem Header="Sort" Template="{StaticResource VsMenuTop}">
                 <MenuItem.Icon>
                     <ContentControl Template="{StaticResource SortIcon}" SnapsToDevicePixels="True" />
                 </MenuItem.Icon>
@@ -70,20 +70,27 @@
                 </MenuItem>
             </MenuItem>
         </Menu>
-        <Menu DockPanel.Dock="Top" Grid.Row="6" IsMainMenu="True">
-            <MenuItem Template="{StaticResource VsMenuTop}">
-                <MenuItem.Icon>
-                    <ContentControl Template="{StaticResource MoreIcon}" SnapsToDevicePixels="True"/>
-                </MenuItem.Icon>
-                <MenuItem Header="_Files" Template="{StaticResource VsMenuSub}">
+        <Grid Grid.Row="6">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <Menu DockPanel.Dock="Top"  IsMainMenu="True" Grid.Column="1">
+                <MenuItem Template="{StaticResource VsMenuTop}" Height="35" MinWidth="35">
                     <MenuItem.Icon>
-                        <ContentControl Template="{StaticResource SortIcon}" SnapsToDevicePixels="True" />
+                        <ContentControl Template="{StaticResource MoreIcon}" SnapsToDevicePixels="True"/>
                     </MenuItem.Icon>
+                    <MenuItem Header="_Files" Template="{StaticResource VsMenuSub}">
+                        <MenuItem.Icon>
+                            <ContentControl Template="{StaticResource SortIcon}" SnapsToDevicePixels="True" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="_Commits" Template="{StaticResource VsMenuSub}" />
+                    <Separator Template="{StaticResource VsMenuSep}" />
+                    <MenuItem Header="_Pushes" Template="{StaticResource VsMenuSub}" />
                 </MenuItem>
-                <MenuItem Header="_Commits" Template="{StaticResource VsMenuSub}" />
-                <Separator Template="{StaticResource VsMenuSep}" />
-                <MenuItem Header="_Pushes" Template="{StaticResource VsMenuSub}" />
-            </MenuItem>
-        </Menu>
+            </Menu>
+        </Grid>
+
     </Grid>
 </Window>
