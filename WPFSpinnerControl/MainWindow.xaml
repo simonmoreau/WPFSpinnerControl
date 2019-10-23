@@ -55,26 +55,29 @@
         <Menu DockPanel.Dock="Top" Grid.Row="5" IsMainMenu="True">
             <MenuItem Header="_Code" Template="{StaticResource VsMenuTop}">
                 <MenuItem.Icon>
-                    <ContentControl Template="{StaticResource SortIcon}" />
+                    <ContentControl Template="{StaticResource SortIcon}" SnapsToDevicePixels="True" />
                 </MenuItem.Icon>
                 <MenuItem Header="_Files" Template="{StaticResource VsMenuSub}">
                     <MenuItem.Icon>
-                        <ContentControl Template="{StaticResource SortIcon}" />
+                        <ContentControl Template="{StaticResource SortIcon}" SnapsToDevicePixels="True" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="_Commits" Template="{StaticResource VsMenuSub}" />
                 <Separator Template="{StaticResource VsMenuSep}" />
-                <MenuItem Header="_Pushes" Template="{StaticResource VsMenuSub}" />
+                <MenuItem Header="_Pushes" Template="{StaticResource VsMenuSub}">
+                    <MenuItem Header="_Commits" Template="{StaticResource VsMenuSub}" />
+                    <MenuItem Header="_Commits" Template="{StaticResource VsMenuSub}" />
+                </MenuItem>
             </MenuItem>
         </Menu>
         <Menu DockPanel.Dock="Top" Grid.Row="6" IsMainMenu="True">
-            <MenuItem Template="{StaticResource VsMenuTopIcon}">
+            <MenuItem Template="{StaticResource VsMenuTop}">
                 <MenuItem.Icon>
-                    <ContentControl Template="{StaticResource MoreIcon}" />
+                    <ContentControl Template="{StaticResource MoreIcon}" SnapsToDevicePixels="True"/>
                 </MenuItem.Icon>
                 <MenuItem Header="_Files" Template="{StaticResource VsMenuSub}">
                     <MenuItem.Icon>
-                        <ContentControl Template="{StaticResource SortIcon}" />
+                        <ContentControl Template="{StaticResource SortIcon}" SnapsToDevicePixels="True" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="_Commits" Template="{StaticResource VsMenuSub}" />
