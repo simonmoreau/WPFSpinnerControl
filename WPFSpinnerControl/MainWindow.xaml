@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:uc="clr-namespace:WPFSpinnerControl.UserSelection"
         xmlns:chip="clr-namespace:WPFSpinnerControl.Chip"
+        xmlns:title="clr-namespace:WPFSpinnerControl.EditableTitle"
         mc:Ignorable="d"
-        Title="MainWindow" Height="514.537" Width="384.298">
+        Title="MainWindow" Height="800" Width="384.298">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -19,6 +20,7 @@
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
@@ -91,6 +93,6 @@
                 </MenuItem>
             </Menu>
         </Grid>
-
+        <title:EditableTitleView Grid.Row="7"></title:EditableTitleView>
     </Grid>
 </Window>
