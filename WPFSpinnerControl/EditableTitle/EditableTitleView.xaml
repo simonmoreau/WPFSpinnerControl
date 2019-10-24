@@ -34,22 +34,9 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <Border BorderBrush="Black" BorderThickness="2" VerticalAlignment="Center" CornerRadius="5" Grid.Row="0" >
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="auto"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBox Height="16" Text="{Binding Text}"  Margin="3 0 0 0" Grid.Column="0"/>
-                    <Canvas Width="16" Height="16" Grid.Column="1">
-                        <Path Fill="Black" Data="m 5.7995118 11.4709 1.48514 0 c 0.38848 0 0.58 0.4724 0.30121 0.743 l -2.41681 2.3452 c -0.16779 0.1628 -0.43461 0.1628 -0.60241 0 l -2.4168 -2.3452 c -0.27879 -0.2706 -0.0873 -0.743 0.3012 -0.743 l 1.48515 0 0 -9.453 1.86332 0 z"/>
-                        <Path Fill="Black" Data="m 14.768406 7.3687 -1.179199 0 -0.46875 -1.2195 -2.1459959 0 -0.4431153 1.2195 -1.1499023 0 2.0910645 -5.3687 1.14624 0 2.149658 5.3687 z m -1.995849 -2.124 -0.739746 -1.9922 -0.725098 1.9922 1.464844 0 z"/>
-                        <Path Fill="Black" Data="m 9.8941388 14.6989 0 -0.9778 2.8198242 -3.4827 -2.5012207 0 0 -0.9082 3.9294437 0 0 0.8423 -2.9406741 3.6218 3.0541991 0 0 0.9046 -4.3615722 0 z"/>
-                    </Canvas>
-                </Grid>
-            </Border>
+            <TextBox x:Name="editableTextBox" Style="{StaticResource EditableTextBox}" Text="{Binding Text}" Background="White"/>
             <StackPanel Orientation="Horizontal" Grid.Row="1">
-                <Button Command="{Binding SaveModificationsCommand}">Save</Button>
+                <Button Command="{Binding SaveModificationsCommand}" Style="{StaticResource AccentButton}">Save</Button>
                 <Button Command="{Binding CancelModificationsCommand}">Cancel</Button>
             </StackPanel>
         </Grid>

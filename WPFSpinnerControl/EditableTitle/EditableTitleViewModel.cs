@@ -15,8 +15,14 @@ namespace WPFSpinnerControl.EditableTitle
             EditTitleCommand = new RelayCommand(EditTitle);
             SaveModificationsCommand = new RelayCommand(SaveModifications);
             CancelModificationsCommand = new RelayCommand(CancelModifications);
+            ClearTextCommand = new RelayCommand(ClearText);
 
             Text = "Prévoir les demandes de dé-raccordement auprès des concessionnaires public";
+        }
+
+        private void ClearText()
+        {
+            Text = "";
         }
 
         private void CancelModifications()
@@ -51,5 +57,6 @@ namespace WPFSpinnerControl.EditableTitle
         public RelayCommand EditTitleCommand { get; private set; }
         public RelayCommand SaveModificationsCommand { get; private set; }
         public RelayCommand CancelModificationsCommand { get; private set; }
+        public RelayCommand ClearTextCommand { get; private set; }
     }
 }

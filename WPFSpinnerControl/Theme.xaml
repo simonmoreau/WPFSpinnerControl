@@ -12,6 +12,14 @@
     <SolidColorBrush x:Key="Item.Background" Color="#fff"/>
     <SolidColorBrush x:Key="Item.Border" Color="#ccc"/>
     <SolidColorBrush x:Key="Item.Text" Color="#262626"/>
+    <SolidColorBrush x:Key="Item.Accent.Background" Color="#0079c0"/>
+    <SolidColorBrush x:Key="Item.Accent.Border" Color="#0069a7"/>
+    <SolidColorBrush x:Key="Item.Accent.Text" Color="#fff"/>
+    <SolidColorBrush x:Key="Item.Accent.MouseOver.Background" Color="#006eaf"/>
+    <SolidColorBrush x:Key="Item.Accent.MouseOver.Border" Color="#0069a7"/>
+    <SolidColorBrush x:Key="Item.Accent.IsPressed.Background" Color="#00598d"/>
+    <SolidColorBrush x:Key="Item.Accent.IsPressed.Border" Color="#002941"/>
+
 
     <Style TargetType="{x:Type Window}">
         <Setter Property="FontFamily" Value="Arial" />
@@ -21,6 +29,12 @@
         <Setter Property="CornerRadius" Value="3" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="BorderBrush" Value="{StaticResource Item.Border}" />
+    </Style>
+
+    <Style TargetType="{x:Type Border}" x:Key="AccentButtonBorder">
+        <Setter Property="CornerRadius" Value="3" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="{StaticResource Item.Accent.Border}" />
     </Style>
 
     <Style TargetType="{x:Type Button}">
@@ -50,6 +64,41 @@
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Background" TargetName="grid" Value="{StaticResource Item.SelectedActive.Background}"/>
                             <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Item.SelectedActive.Border}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type Button}" x:Key="AccentButton">
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="1"/>
+        <Setter Property="MinHeight" Value="35"/>
+        <Setter Property="Foreground" Value="{StaticResource Item.Accent.Text}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid x:Name="grid" Background="{StaticResource Item.Accent.Background}">
+                        <Border x:Name="border" Style="{StaticResource AccentButtonBorder}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center" Margin="10,5,10,5">
+                            </ContentPresenter>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" TargetName="grid" Value="{StaticResource Item.Accent.IsPressed.Background}"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Item.Accent.IsPressed.Border}"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" TargetName="grid" Value="{StaticResource Item.Accent.MouseOver.Background}"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Item.Accent.MouseOver.Border}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" TargetName="grid" Value="{StaticResource Item.Accent.IsPressed.Background}"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Item.Accent.IsPressed.Border}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
