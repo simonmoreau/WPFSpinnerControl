@@ -34,9 +34,9 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <TextBox x:Name="editableTextBox" Style="{StaticResource EditableTextBox}" Text="{Binding Text}" Background="White"/>
-            <StackPanel Orientation="Horizontal" Grid.Row="1">
-                <Button Command="{Binding SaveModificationsCommand}" Style="{StaticResource AccentButton}">Save</Button>
+            <TextBox x:Name="editableTextBox" Style="{StaticResource EditableTextBox}" Text="{Binding EditedText, Mode=TwoWay}" Background="White" Padding="3"/>
+            <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0,5,0,0">
+                <Button Command="{Binding SaveModificationsCommand}" Style="{StaticResource AccentButton}" Margin="0,0,5,0">Save</Button>
                 <Button Command="{Binding CancelModificationsCommand}">Cancel</Button>
             </StackPanel>
         </Grid>

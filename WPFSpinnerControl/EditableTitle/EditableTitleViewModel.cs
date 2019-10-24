@@ -22,7 +22,7 @@ namespace WPFSpinnerControl.EditableTitle
 
         private void ClearText()
         {
-            Text = "";
+            EditedText = "";
         }
 
         private void CancelModifications()
@@ -33,11 +33,20 @@ namespace WPFSpinnerControl.EditableTitle
         private void SaveModifications()
         {
             EditableMode = false;
+            Text = EditedText;
         }
 
         private void EditTitle()
         {
             EditableMode = true;
+            EditedText = Text;
+        }
+
+        private string _editedText;
+        public string EditedText
+        {
+            get { return _editedText; }
+            set { SetProperty(ref _editedText, value); }
         }
 
         private string _text;

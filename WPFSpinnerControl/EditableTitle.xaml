@@ -78,12 +78,12 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBoxBase}">
                     <Border Name="border" VerticalAlignment="Center" Grid.Row="0" Style="{StaticResource EditableTextBorder}">
-                        <Grid>
+                        <Grid Height="{TemplateBinding Height}" Background="{TemplateBinding Background}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="auto"/>
                             </Grid.ColumnDefinitions>
-                            <ScrollViewer Margin="0" x:Name="PART_ContentHost" Background="{TemplateBinding Background}" />
+                            <ScrollViewer Margin="0" x:Name="PART_ContentHost" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}"/>
                             <!--<TextBox Height="16" Text="{Binding Text}"  Margin="3 0 0 0" Grid.Column="0" Style="{StaticResource EditableTextBox}"/>-->
                             <Button Command="{Binding Path=DataContext.ClearTextCommand, ElementName=editableTextBox}" Grid.Column="1" Style="{StaticResource EmptyTextButton}" Background="{TemplateBinding Background}">
                                 <Canvas Width="16" Height="16">
