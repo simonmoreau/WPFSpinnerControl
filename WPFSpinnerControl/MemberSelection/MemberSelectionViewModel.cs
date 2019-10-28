@@ -13,6 +13,7 @@ namespace WPFSpinnerControl.MemberSelection
         public MemberSelectionViewModel()
         {
             OpenPopupCommand = new RelayCommand(OpenPopup);
+            ClosePopupCommand = new RelayCommand(ClosePopup);
 
             MemberSelectionItems = new List<MemberSelectionItem>();
 
@@ -22,7 +23,13 @@ namespace WPFSpinnerControl.MemberSelection
             MemberSelectionItems.Add(new MemberSelectionItem("060db126f7ee4678beb5facb298bfdf5", "stanislas de champroux", "s.dechamproux@bouygues-immobilier.com", null));
             MemberSelectionItems.Add(new MemberSelectionItem("fd78e5ee080b4063b40e492041c4a9a9", "Bouygues Immobilier", null, "https://api.bimsync.com/v2/avatar/8dxk2e9HML1WQpnxozf2ASXkKT40l2MsPn4v7rqH3KcwJBcnsa0iwt1wF0LwJsjW"));
 
-            SelectedMember = MemberSelectionItems.FirstOrDefault();
+            SelectedMember = MemberSelectionItems[2];
+            EditedSelectedMember = SelectedMember;
+        }
+
+        private void ClosePopup()
+        {
+            IsPopupOpen = false;
         }
 
         private void OpenPopup()
@@ -44,6 +51,13 @@ namespace WPFSpinnerControl.MemberSelection
             set { SetProperty(ref _selectedMember, value); }
         }
 
+        private MemberSelectionItem _editedSelectedMember;
+        public MemberSelectionItem EditedSelectedMember
+        {
+            get { return _editedSelectedMember; }
+            set { SetProperty(ref _editedSelectedMember, value); }
+        }
+
         private bool _isPopupOpen;
         public bool IsPopupOpen
         {
@@ -51,7 +65,10 @@ namespace WPFSpinnerControl.MemberSelection
             set { SetProperty(ref _isPopupOpen, value); }
         }
 
+
+
         public RelayCommand OpenPopupCommand { get; private set; }
+        public RelayCommand ClosePopupCommand { get; private set; }
 
 
     }
