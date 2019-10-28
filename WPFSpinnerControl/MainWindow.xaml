@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:uc="clr-namespace:WPFSpinnerControl.UserSelection"
+        xmlns:ms="clr-namespace:WPFSpinnerControl.MemberSelection"
         xmlns:chip="clr-namespace:WPFSpinnerControl.Chip"
         xmlns:title="clr-namespace:WPFSpinnerControl.EditableTitle"
         mc:Ignorable="d"
@@ -52,7 +53,7 @@
             <ComboBoxItem>Bonjour2</ComboBoxItem>
             <ComboBoxItem>Hello</ComboBoxItem>
         </ComboBox>
-        <uc:UserSelectionView Grid.Row="3"></uc:UserSelectionView>
+        <ms:MemberSelectionView Grid.Row="3"></ms:MemberSelectionView>
         <chip:ChipView Grid.Row="4"></chip:ChipView>
         <Menu DockPanel.Dock="Top" Grid.Row="5" IsMainMenu="True">
             <MenuItem Header="Sort" Template="{StaticResource VsMenuTop}">

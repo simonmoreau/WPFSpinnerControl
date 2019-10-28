@@ -13,18 +13,18 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WPFSpinnerControl
+namespace WPFSpinnerControl.MemberSelection
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for MemberSelectionView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MemberSelectionView : UserControl
     {
-        public MainWindow()
+        public MemberSelectionView()
         {
             InitializeComponent();
-            MainWindowViewModel mainWindowViewModel = new MainWindowViewModel();
-            this.DataContext = mainWindowViewModel;
+            MemberSelectionViewModel memberSelectionViewModel = new MemberSelectionViewModel();
+            this.DataContext = memberSelectionViewModel;
         }
     }
 }
