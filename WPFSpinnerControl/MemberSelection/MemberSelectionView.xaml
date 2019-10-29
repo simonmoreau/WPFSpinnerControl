@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WPFSpinnerControl.MemberSelection"
+             xmlns:m="clr-namespace:WPFSpinnerControl"
              mc:Ignorable="d" d:DesignWidth="600">
     <UserControl.Resources>
         <ResourceDictionary>
@@ -12,11 +13,15 @@
                 <ResourceDictionary Source="..\Theme.xaml"/>
                 <ResourceDictionary Source="MemberSelection.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <BooleanToVisibilityConverter x:Key="btv" />
+            <m:NullOrEmptyToVisibilityConverter x:Key="ntv"/>
+            <m:InvertedBooleanToVisibilityConverter x:Key="ibtv"/>
+            <m:InvertedNullOrEmptyToVisibilityConverter x:Key="intv"/>
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
         <Button Style="{StaticResource MemberSelectionButton}" Command="{Binding OpenPopupCommand}">
-            <DockPanel>
+            <DockPanel Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
                 <Image Source="{Binding SelectedMember.Avatar}" Height="32" Width="32"/>
                 <TextBlock VerticalAlignment="Center" Margin="3,0,3,0" Text="{Binding SelectedMember.Name}" />
             </DockPanel>
@@ -28,20 +33,28 @@
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
-                    <Button Name="setMeButton" Grid.Row="0" Style="{StaticResource InPopupnButton}">
+                    <TextBlock Grid.Row="0" Text="There are currently no one assigned to this issue" Margin="5" Visibility="{Binding SelectedMember.ID, Converter={StaticResource intv}}"/>
+                    <Button Grid.Row="1" Style="{StaticResource InPopupnButton}" Command="{Binding RemoveMeAsSelectedMemberCommand}"  Visibility="{Binding IsMeSelected, Converter={StaticResource btv}}">
                         <DockPanel Margin="5,0,0,0">
                             <ContentControl Template="{StaticResource MinusIcon}" SnapsToDevicePixels="True" />
-                            <TextBlock Padding="3">Set Me</TextBlock>
+                            <TextBlock Padding="3">Remove me</TextBlock>
                         </DockPanel>
                     </Button>
-                    <Button Name="myPopupText" Grid.Row="1" Style="{StaticResource InPopupnButton}">
+                    <Button Grid.Row="1" Style="{StaticResource InPopupnButton}" Command="{Binding SetMeAsSelectedMemberCommand}" Visibility="{Binding IsMeSelected, Converter={StaticResource ibtv}}">
+                        <DockPanel Margin="5,0,0,0">
+                            <ContentControl Template="{StaticResource PlusIcon}" SnapsToDevicePixels="True" />
+                            <TextBlock Padding="3">Set me</TextBlock>
+                        </DockPanel>
+                    </Button>
+                    <Button Name="myPopupText" Grid.Row="2" Style="{StaticResource InPopupnButton}" Visibility="Collapsed">
                         <DockPanel Margin="5,0,0,0">
                             <ContentControl Template="{StaticResource PlusIcon}" SnapsToDevicePixels="True" />
                             <TextBlock Padding="3">Set me @Bouygues Immo</TextBlock>
                         </DockPanel>
                     </Button>
-                    <Grid Grid.Row="2" Margin="5">
+                    <Grid Grid.Row="3" Margin="5">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto"/>
                             <RowDefinition Height="auto"/>
@@ -52,14 +65,14 @@
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding Name}" />
+                                        <TextBlock Text="{Binding Name}"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="2" Margin="0,5,0,0">
-                            <Button Command="{Binding SaveModificationsCommand}" Style="{StaticResource AccentButton}" Margin="0,0,5,0">Save</Button>
-                            <Button Command="{Binding CancelModificationsCommand}">Cancel</Button>
+                            <Button Command="{Binding SaveEditedSelectedMemberCommand}" Style="{StaticResource AccentButton}" Margin="0,0,5,0">Save</Button>
+                            <Button Command="{Binding CancelEditedSelectedMemberCommand}">Cancel</Button>
                         </StackPanel>
                     </Grid>
                 </Grid>

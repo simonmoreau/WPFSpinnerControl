@@ -10,21 +10,60 @@ namespace WPFSpinnerControl.MemberSelection
 {
     public class MemberSelectionViewModel : BindableBase
     {
+        private MemberSelectionItem _me;
+        private MemberSelectionItem _notSetMember;
+
         public MemberSelectionViewModel()
         {
+            
+
             OpenPopupCommand = new RelayCommand(OpenPopup);
             ClosePopupCommand = new RelayCommand(ClosePopup);
 
+            SaveEditedSelectedMemberCommand = new RelayCommand(SaveEditedSelectedMember);
+            CancelEditedSelectedMemberCommand = new RelayCommand(CancelEditedSelectedMember);
+
+            SetMeAsSelectedMemberCommand = new RelayCommand(SetMeAsSelectedMember);
+            RemoveMeAsSelectedMemberCommand = new RelayCommand(RemoveMeAsSelectedMember);
+
             MemberSelectionItems = new List<MemberSelectionItem>();
 
+            _notSetMember = new MemberSelectionItem(null, "Not set", null, null);
+            MemberSelectionItems.Add(_notSetMember);
             MemberSelectionItems.Add(new MemberSelectionItem("cedac9c7095a482795636ff48077b12b", "Dag Fjeld Edvardsen", "dag.fjeld.edvardsen@catenda.no", "https://api.bimsync.com/v2/avatar/lPrXS1omHZAVRAjnmjEWp%252FqM2IP3gL%252FttPE84T85MKcwJBcnsa0iwt1wF0LwJsjW"));
             MemberSelectionItems.Add(new MemberSelectionItem("e647607b020d4cb8950c1dfaf544ae1a", "Simon Moreau", "s.moreau@bouygues-immobilier.com", "https://api.bimsync.com/v2/avatar/fMBhCbVdH04LQux8nPywuo7U1QSq7HS2Mmo0i5%252FoJpswJBcnsa0iwt1wF0LwJsjW"));
             MemberSelectionItems.Add(new MemberSelectionItem("4f933018f5034991ae4691bbf1e141ed", "Alessandra Peroni", "a.peroni@bouygues-immobilier.com", "https://api.bimsync.com/v2/avatar/%252Bmtsw5sn9MKZwj7En8Pv2TO8bnTPYKZ9iOb5k9fsCkcwJBcnsa0iwt1wF0LwJsjW"));
             MemberSelectionItems.Add(new MemberSelectionItem("060db126f7ee4678beb5facb298bfdf5", "stanislas de champroux", "s.dechamproux@bouygues-immobilier.com", null));
             MemberSelectionItems.Add(new MemberSelectionItem("fd78e5ee080b4063b40e492041c4a9a9", "Bouygues Immobilier", null, "https://api.bimsync.com/v2/avatar/8dxk2e9HML1WQpnxozf2ASXkKT40l2MsPn4v7rqH3KcwJBcnsa0iwt1wF0LwJsjW"));
 
+            _me = MemberSelectionItems[2];
+
             SelectedMember = MemberSelectionItems[2];
             EditedSelectedMember = SelectedMember;
+        }
+
+        private void RemoveMeAsSelectedMember()
+        {
+            SelectedMember = _notSetMember;
+            IsPopupOpen = false;
+        }
+
+        private void SetMeAsSelectedMember()
+        {
+            SelectedMember = _me;
+            IsPopupOpen = false;
+        }
+
+        private void CancelEditedSelectedMember()
+        {
+            EditedSelectedMember = SelectedMember;
+            IsPopupOpen = false;
+        }
+
+        private void SaveEditedSelectedMember()
+        {
+            SelectedMember = EditedSelectedMember;
+            IsPopupOpen = false;
         }
 
         private void ClosePopup()
@@ -48,7 +87,7 @@ namespace WPFSpinnerControl.MemberSelection
         public MemberSelectionItem SelectedMember
         {
             get { return _selectedMember; }
-            set { SetProperty(ref _selectedMember, value); }
+            set { SetProperty(ref _selectedMember, value); CheckIfMeSelected(); }
         }
 
         private MemberSelectionItem _editedSelectedMember;
@@ -65,10 +104,35 @@ namespace WPFSpinnerControl.MemberSelection
             set { SetProperty(ref _isPopupOpen, value); }
         }
 
+        private bool _isMeSelected;
+        public bool IsMeSelected
+        {
+            get { return _isMeSelected; }
+            set { SetProperty(ref _isMeSelected, value); }
+        }
+
+        private void CheckIfMeSelected()
+        {
+            if (SelectedMember == _me)
+            {
+                IsMeSelected = true;
+            }
+            else
+            {
+                IsMeSelected = false;
+            }
+        }
+
 
 
         public RelayCommand OpenPopupCommand { get; private set; }
         public RelayCommand ClosePopupCommand { get; private set; }
+
+        public RelayCommand SaveEditedSelectedMemberCommand { get; private set; }
+        public RelayCommand CancelEditedSelectedMemberCommand { get; private set; }
+
+        public RelayCommand SetMeAsSelectedMemberCommand { get; private set; }
+        public RelayCommand RemoveMeAsSelectedMemberCommand { get; private set; }
 
 
     }

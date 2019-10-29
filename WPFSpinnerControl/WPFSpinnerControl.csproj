@@ -70,6 +70,7 @@
     </Compile>
     <Compile Include="EditableTitle\EditableTitleViewModel.cs" />
     <Compile Include="InvertedBooleanToVisibilityConverter.cs" />
+    <Compile Include="InvertedNullOrEmptyToVisibilityConverter.cs" />
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="MemberSelection\MemberSelectionView.xaml.cs">
       <DependentUpon>MemberSelectionView.xaml</DependentUpon>
