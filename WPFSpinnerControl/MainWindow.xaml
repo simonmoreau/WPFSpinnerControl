@@ -29,6 +29,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <ProgressBar Width="50" Height="50"/>
         <Grid Grid.Row="1" Margin="10,5,10,5">
@@ -95,5 +96,6 @@
             </Menu>
         </Grid>
         <title:EditableTitleView Grid.Row="7"></title:EditableTitleView>
+        <TextBox Style="{StaticResource LabelTextBox}" Grid.Row="8">Bonjour</TextBox>
     </Grid>
 </Window>

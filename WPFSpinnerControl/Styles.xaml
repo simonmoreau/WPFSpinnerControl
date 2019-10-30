@@ -135,6 +135,30 @@
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
+    <!-- the label icon -->
+    <ControlTemplate x:Key="LabelIcon">
+        <Canvas Width="12" Height="12">
+            <Path Fill="{TemplateBinding Foreground}" Data="M11.775 6.225l-6-6A.68.68 0 0 0 5.25 0H.75C.3 0 0 .3 0 .75v4.5a.68.68 0 0 0 .225.525l6 6c.15.15.3.225.525.225a.68.68 0 0 0 .525-.225l4.5-4.5c.3-.3.3-.75 0-1.05zM3 3.75c-.45 0-.75-.3-.75-.75s.3-.75.75-.75.75.3.75.75-.3.75-.75.75z"/>
+        </Canvas>
+    </ControlTemplate>
+    
+    <Style x:Key="LabelTextBox" TargetType="{x:Type TextBox}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Grid VerticalAlignment="Stretch">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <ContentControl Grid.Column="0" Template="{StaticResource LabelIcon}" SnapsToDevicePixels="True" />
+                        <ScrollViewer Grid.Column="1" x:Name="PART_ContentHost"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style TargetType="{x:Type Button}" x:Key="CommentButton" >
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>

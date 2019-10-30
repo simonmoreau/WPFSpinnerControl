@@ -21,7 +21,7 @@
     </UserControl.Resources>
     <Grid>
         <Button Style="{StaticResource MemberSelectionButton}" Command="{Binding OpenPopupCommand}">
-            <DockPanel Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+            <DockPanel Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}" Margin="3" >
                 <Image Source="{Binding SelectedMember.Avatar}" Height="32" Width="32"/>
                 <TextBlock VerticalAlignment="Center" Margin="3,0,3,0" Text="{Binding SelectedMember.Name}" />
             </DockPanel>
