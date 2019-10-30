@@ -80,7 +80,7 @@
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
             <Menu DockPanel.Dock="Top"  IsMainMenu="True" Grid.Column="1">
-                <MenuItem Template="{StaticResource VsMenuTop}" Height="35" MinWidth="35">
+                <MenuItem Template="{StaticResource VsMenuTopRight}" Height="35" MinWidth="35">
                     <MenuItem.Icon>
                         <ContentControl Template="{StaticResource MoreIcon}" SnapsToDevicePixels="True"/>
                     </MenuItem.Icon>

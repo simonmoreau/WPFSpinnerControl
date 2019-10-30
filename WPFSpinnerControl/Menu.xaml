@@ -53,7 +53,44 @@
                     <Label Content="{TemplateBinding Header}" Foreground="{StaticResource Item.Text}" Margin="3,0" Visibility="{TemplateBinding Header, Converter={StaticResource stv}}" />
                 </StackPanel>
                 <!-- sub items -->
-                <Popup Grid.Row="1" IsOpen="{TemplateBinding IsSubmenuOpen}" AllowsTransparency="True" Focusable="False">
+                <Popup Grid.Row="1" IsOpen="{TemplateBinding IsSubmenuOpen}" AllowsTransparency="True" Focusable="False" HorizontalOffset="-1" VerticalOffset="2">
+                    <Border x:Name="DropDownBorder" BorderThickness="1" Background="{StaticResource Item.Background}" BorderBrush="{StaticResource Item.Border}" CornerRadius="3">
+                        <StackPanel IsItemsHost="True" />
+                    </Border>
+                </Popup>
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" TargetName="DropDownButton" Value="{StaticResource Item.MouseOver.Background}"/>
+                <Setter Property="BorderBrush" TargetName="DropDownButton"  Value="{StaticResource Item.MouseOver.Border}"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" TargetName="DropDownButton"  Value="{StaticResource Item.SelectedActive.Background}"/>
+                <Setter Property="BorderBrush" TargetName="DropDownButton"  Value="{StaticResource Item.SelectedActive.Border}"/>
+            </Trigger>
+            <Trigger Property="IsGrouping" Value="true">
+                <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <!-- style a right-align top level menu item -->
+    <ControlTemplate x:Key="VsMenuTopRight" TargetType="MenuItem">
+        <Border x:Name="DropDownButton" BorderThickness="1" BorderBrush="{StaticResource Item.Border}" Background="{StaticResource Item.Background}" CornerRadius="3">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="{TemplateBinding Height}"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="0,3">
+                    <!-- label, icons, etc. -->
+                    <ContentPresenter MinWidth="{TemplateBinding MinWidth}" x:Name="Icon" Content="{TemplateBinding Icon}" ContentSource="Icon" Margin="3,0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Visibility="{TemplateBinding Icon, Converter={StaticResource ntv}}"/>
+                    <!--<Image Source="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}}" Width="16" Margin="0" />-->
+                    <Label Content="{TemplateBinding Header}" Foreground="{StaticResource Item.Text}" Margin="3,0" Visibility="{TemplateBinding Header, Converter={StaticResource stv}}" />
+                </StackPanel>
+                <!-- sub items -->
+                <Popup Grid.Row="1" IsOpen="{TemplateBinding IsSubmenuOpen}" AllowsTransparency="True" Focusable="False" HorizontalOffset="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ActualWidth}" VerticalOffset="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ActualHeight}" Placement="Left">
                     <Border x:Name="DropDownBorder" BorderThickness="1" Background="{StaticResource Item.Background}" BorderBrush="{StaticResource Item.Border}" CornerRadius="3">
                         <StackPanel IsItemsHost="True" />
                     </Border>
@@ -78,14 +115,14 @@
     <!-- style a non-top level menu item -->
     <ControlTemplate x:Key="VsMenuSub" TargetType="MenuItem">
         <DockPanel x:Name="panel" Height="30">
-            <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="0,3">
+            <DockPanel Margin="0,3" >
                 <!-- label, icons, etc. -->
-                <ContentPresenter x:Name="Icon" Content="{TemplateBinding Icon}" ContentSource="Icon" Margin="3,0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Width="16"/>
+                <ContentPresenter x:Name="Icon" Content="{TemplateBinding Icon}" ContentSource="Icon" Margin="3,0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Width="16"  Visibility="{TemplateBinding Icon, Converter={StaticResource ntv}}"/>
                 <!--<Image Source="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}}" Width="16" Margin="0" />-->
                 <Label Content="{TemplateBinding Header}" Foreground="{StaticResource Item.Text}" Margin="3,0"  />
                 <!-- draw the right arrow only if this menu item has sub items -->
                 <ContentControl  Content="{StaticResource RightArrowIcon}" Visibility="{Binding HasItems, Converter={StaticResource btv}, RelativeSource={RelativeSource TemplatedParent}}" Margin="3,0"  />
-            </StackPanel>
+            </DockPanel>
             <!-- sub items -->
             <Popup IsOpen="{TemplateBinding IsSubmenuOpen}" AllowsTransparency="True" Focusable="False" Placement="Right" >
                 <Border BorderThickness="1" Background="White" BorderBrush="#E0E0E0">
